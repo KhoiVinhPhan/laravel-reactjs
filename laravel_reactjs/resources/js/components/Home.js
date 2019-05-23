@@ -3,16 +3,7 @@ import { Redirect } from 'react-router-dom'
 import App from './layouts/App';
 
 class Home extends Component {
-	render() {
-		let login = localStorage.getItem('jwt');
-        if (!login) {
-            return (
-                <div>
-                    <Redirect to='login'/>
-                </div>
-            )
-        }
-        
+	render() {        
 		return (
 			<App>
 				<div>

@@ -28,6 +28,7 @@ import { createBrowserHistory } from 'history'
 import Home from './components/Home.js'
 import Contact from './components/Contact.js'
 import Login from './components/auth/Login.js'
+import Register from './components/auth/Register.js'
 
 const history = createBrowserHistory()
 render (
@@ -36,6 +37,7 @@ render (
             <Route exact path='/' component={Home} />
             <Route path='/contact' component={Contact} />
             <Route path='/login' component={Login} />
+            <Route path='/register' component={Register} />
         </Switch>
     </Router>, 
     document.getElementById('app')

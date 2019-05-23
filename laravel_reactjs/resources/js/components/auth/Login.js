@@ -29,6 +29,7 @@ class Login extends Component {
         axios.post(uri, this.state).then((response) => {
             if (response.data.token) {
                 localStorage.setItem('jwt', response.data.token);
+                localStorage.setItem('email', response.data.email);
                 this.props.history.push('/');
             }
         })
@@ -40,7 +41,7 @@ class Login extends Component {
                     <div className="panel-heading ">Login</div>
                     <div className="panel-body">
                         <form onSubmit={this.handleSubmit}>
-                            <label>User name</label>
+                            <label>Email</label>
                             <input type={'text'} className="form-control" onChange={this.handleChangeEmail}/>
                             <label>Password</label>
                             <input type={'password'} className="form-control"

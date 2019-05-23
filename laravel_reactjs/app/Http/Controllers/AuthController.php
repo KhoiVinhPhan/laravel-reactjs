@@ -25,6 +25,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $input = $request->all();
         $credentials = $request->only('email', 'password');
         if (!($token = JWTAuth::attempt($credentials))) {
             return response()->json([
@@ -33,7 +34,7 @@ class AuthController extends Controller
                 'msg' => 'Invalid Credentials.'
             ], Response::HTTP_BAD_REQUEST);
         }
-        return response()->json(['token' => $token], Response::HTTP_OK);
+        return response()->json([ 'token' => $token, 'email' => $input['email'] ], Response::HTTP_OK);
     }
 
     public function user(Request $request)
