@@ -13,6 +13,7 @@ require('./bootstrap');
  */
 
 require('./components/Example');
+require('./example.js');
 
 
 // resources\assets\js\app.js
@@ -27,8 +28,10 @@ import {
 import { createBrowserHistory } from 'history'
 import Home from './components/Home.js'
 import Contact from './components/Contact.js'
+import Users from './components/users/Index.js'
 import Login from './components/auth/Login.js'
 import Register from './components/auth/Register.js'
+
 
 const history = createBrowserHistory()
 render (
@@ -36,6 +39,7 @@ render (
         <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/contact' component={Contact} />
+            <Route path='/users' component={Users} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
         </Switch>

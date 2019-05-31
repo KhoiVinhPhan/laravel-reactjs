@@ -28,6 +28,7 @@ class Login extends Component {
         let uri = '/api/login';
         axios.post(uri, this.state).then((response) => {
             if (response.data.token) {
+                console.log(response.data.token);
                 localStorage.setItem('jwt', response.data.token);
                 localStorage.setItem('email', response.data.email);
                 this.props.history.push('/');

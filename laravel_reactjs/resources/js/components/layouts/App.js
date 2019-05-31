@@ -29,6 +29,9 @@ class App extends Component {
                         <li className="nav-item d-none d-sm-inline-block">
                             <Link className="nav-link js-scroll-trigger" to={'/contact'}>Contact</Link>
                         </li>
+                        <li className="nav-item d-none d-sm-inline-block">
+                            <Link className="nav-link js-scroll-trigger" to={'/users'}>Users</Link>
+                        </li>
                         <Button email={this.state.email} />
                     </ul>
                     <ul className="navbar-nav ml-auto">
