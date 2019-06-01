@@ -1,0 +1,7 @@
+1.copy file .env: cp .env.example .env
+2. $ composer install
+3. $ php artisan key:generate
+4. install npm
+5. $ npm install
+6. install redux: $ npm install --save redux
+7. install reactjs panigation: $ npm install react-js-pagination
