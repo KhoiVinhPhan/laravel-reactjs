@@ -13,13 +13,14 @@ require('./bootstrap');
  */
 
 require('./components/Example');
-require('./example.js');
+var store = require('./example.js');
 
 
 // resources\assets\js\app.js
 
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 import {
     Router,
     Route,
@@ -35,14 +36,16 @@ import Register from './components/auth/Register.js'
 
 const history = createBrowserHistory()
 render (
-    <Router history={history}>
-        <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/contact' component={Contact} />
-            <Route path='/users' component={Users} />
-            <Route path='/login' component={Login} />
-            <Route path='/register' component={Register} />
-        </Switch>
-    </Router>, 
+    <Provider store={store} >
+        <Router history={history} >
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/contact' component={Contact} />
+                <Route path='/users' component={Users} />
+                <Route path='/login' component={Login} />
+                <Route path='/register' component={Register} />
+            </Switch>
+        </Router>
+    </Provider>,
     document.getElementById('app')
 )

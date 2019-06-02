@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom'
 import App from './layouts/App';
+import { connect } from 'react-redux';
 
 class Home extends Component {
 	constructor(props){
@@ -9,7 +10,8 @@ class Home extends Component {
 	}
 
 	hanldeButton(){
-		
+		console.log(this.props);
+		this.props.dispatch({type: "TOGGLE"});
 	}
 
 	render() {        
@@ -24,4 +26,6 @@ class Home extends Component {
 	}
 }
 
-export default Home
+export default connect(function(state){
+	return {mang: state.mang}
+})(Home);
