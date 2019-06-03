@@ -21,6 +21,7 @@ Route::post('signup', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
 Route::any('/users', 'UserController@index');
+Route::post('/users/create', 'UserController@create');
 
 
 Route::group(['middleware' => ['jwt-auth']], function () { 

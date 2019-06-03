@@ -21,15 +21,12 @@ var store = require('./example.js');
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import {
-    Router,
-    Route,
-    Switch
-} from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import Home from './components/Home.js'
 import Contact from './components/Contact.js'
 import Users from './components/users/Index.js'
+import CreateUser from './components/users/Create.js'
 import Login from './components/auth/Login.js'
 import Register from './components/auth/Register.js'
 
@@ -41,6 +38,7 @@ render (
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/contact' component={Contact} />
+                <Route path='/users/create' component={CreateUser} />
                 <Route path='/users' component={Users} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />

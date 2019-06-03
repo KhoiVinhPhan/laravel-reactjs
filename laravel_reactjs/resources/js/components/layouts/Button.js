@@ -19,7 +19,7 @@ class Button extends Component {
                 localStorage.removeItem('jwt');
                 localStorage.removeItem('email');
                 window.location.href = '/';
-                // console.log(this.props);
+                // console.log(this.state);
                 // this.props.history.push('/contact');
             }
         })
@@ -34,7 +34,9 @@ class Button extends Component {
                         <span className="nav-link js-scroll-trigger">Hello: {this.props.email}</span>
                     </li>
                     <li className="nav-item">
-                        <button className="btn btn-primary" onClick={this.handleLogoutWeb}>Logout</button>
+                        <form onSubmit={this.handleLogoutWeb}>
+                            <button className="btn btn-primary">Logout</button>
+                        </form>
                     </li>
                 </Fragment>
             )
