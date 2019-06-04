@@ -38,6 +38,7 @@ var isAddingReducer = (state = false, action) => {
 	}
 }
 
+
 var reducer = redux.combineReducers({
 	mang: mangReducer,
 	isAdding: isAddingReducer
@@ -65,5 +66,6 @@ store.dispatch({
 	type: "REMOVE_ITEM",
 	index: 1
 });
+
 
 module.exports = store;

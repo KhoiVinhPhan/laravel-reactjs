@@ -59,7 +59,7 @@ class AuthController extends Controller
         $this->validate($request, ['token' => 'required']);
         
         try {
-            // JWTAuth::invalidate($request->input('token'));
+            JWTAuth::invalidate($request->input('token'));
             return response()->json('You have successfully logged out.', Response::HTTP_OK);
         } catch (JWTException $e) {
             return response()->json('Failed to logout, please try again.', Response::HTTP_BAD_REQUEST);

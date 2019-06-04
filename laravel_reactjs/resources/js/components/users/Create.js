@@ -10,7 +10,8 @@ class Create extends Component {
 		this.state = {
 			name: '',
 			email: '',
-			password: ''
+			password: '',
+			token : localStorage.getItem('jwt')
 		};
 		this.handleChangeName = this.handleChangeName.bind(this);
 		this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -51,7 +52,7 @@ class Create extends Component {
         if (!login) {
             return (
                 <div>
-                    <Redirect to='login'/>
+                    <Redirect to='/login'/>
                 </div>
             )
         }

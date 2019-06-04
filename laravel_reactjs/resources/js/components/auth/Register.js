@@ -41,7 +41,7 @@ class Register extends Component {
     render() {
         return (
             <App>
-                <div className="panel panel-default">
+                <div className="panel panel-default col-sm-6">
                     <div className="panel-heading ">Register</div>
                     <div className="panel-body">
                         <form onSubmit={this.handleSubmitRegister}>

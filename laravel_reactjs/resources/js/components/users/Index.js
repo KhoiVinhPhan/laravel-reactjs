@@ -50,7 +50,10 @@ class Index extends Component {
     handlePageChange(pageNumber) {
         this.setState({activePage: pageNumber});
         let url = window.Laravel.baseUrl + '/api/users?value=' + this.state.valueSearch + '&page=' + pageNumber;
-        axios.get(url)
+        let token = {
+            'token' : localStorage.getItem('jwt')
+        }
+        axios.post(url, token)
             .then(response => {
                 console.log(response.data);
                 this.setState({ 
@@ -102,7 +105,10 @@ class Index extends Component {
         const data = {
             value: this.state.valueSearch,
         }
-        axios.get(url)
+        let token = {
+            'token' : localStorage.getItem('jwt')
+        }
+        axios.post(url, token)
             .then(response => {
                 console.log(response.data);
                 this.setState({ 

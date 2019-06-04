@@ -68215,7 +68215,7 @@ function (_Component) {
   _createClass(Home, [{
     key: "hanldeButton",
     value: function hanldeButton() {
-      console.log(this.props);
+      console.log(this.props.account);
       this.props.dispatch({
         type: "TOGGLE"
       });
@@ -68334,7 +68334,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_layouts_App__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel panel-default"
+        className: "panel panel-default col-sm-6"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-heading "
       }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -68464,7 +68464,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_layouts_App__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel panel-default"
+        className: "panel panel-default col-sm-6"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-heading "
       }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -68543,26 +68543,12 @@ function (_Component) {
   _inherits(App, _Component);
 
   function App(props) {
-    var _this;
-
     _classCallCheck(this, App);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
-    _this.state = {
-      email: ''
-    };
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
   }
 
   _createClass(App, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var email = localStorage.getItem('email');
-      this.setState({
-        email: email
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -68589,9 +68575,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         className: "nav-link js-scroll-trigger",
         to: '/users'
-      }, "Users")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        email: this.state.email
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, "Users")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "navbar-nav ml-auto"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item dropdown"
@@ -68835,6 +68819,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68852,6 +68837,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -68875,6 +68861,8 @@ function (_Component) {
   _createClass(Button, [{
     key: "handleLogoutWeb",
     value: function handleLogoutWeb(e) {
+      var _this2 = this;
+
       e.preventDefault();
       var uri = '/api/logout';
       var token = {
@@ -68884,8 +68872,10 @@ function (_Component) {
         if (response.status == 200) {
           localStorage.removeItem('jwt');
           localStorage.removeItem('email');
-          window.location.href = '/'; // console.log(this.state);
-          // this.props.history.push('/contact');
+
+          _this2.setState({
+            state: _this2.state
+          });
         }
       });
     }
@@ -68895,11 +68885,12 @@ function (_Component) {
       var login = localStorage.getItem('jwt');
 
       if (login) {
+        var email = localStorage.getItem('email');
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "nav-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "nav-link js-scroll-trigger"
-        }, "Hello: ", this.props.email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }, "Hello: ", email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "nav-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.handleLogoutWeb
@@ -68981,7 +68972,8 @@ function (_Component) {
     _this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      token: localStorage.getItem('jwt')
     };
     _this.handleChangeName = _this.handleChangeName.bind(_assertThisInitialized(_this));
     _this.handleChangeEmail = _this.handleChangeEmail.bind(_assertThisInitialized(_this));
@@ -69031,7 +69023,7 @@ function (_Component) {
 
       if (!login) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
-          to: "login"
+          to: "/login"
         }));
       }
 
@@ -69170,7 +69162,10 @@ function (_Component) {
         activePage: pageNumber
       });
       var url = window.Laravel.baseUrl + '/api/users?value=' + this.state.valueSearch + '&page=' + pageNumber;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(function (response) {
+      var token = {
+        'token': localStorage.getItem('jwt')
+      };
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(url, token).then(function (response) {
         console.log(response.data);
 
         _this2.setState({
@@ -69218,7 +69213,10 @@ function (_Component) {
       var data = {
         value: this.state.valueSearch
       };
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(function (response) {
+      var token = {
+        'token': localStorage.getItem('jwt')
+      };
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(url, token).then(function (response) {
         console.log(response.data);
 
         _this3.setState({

@@ -10,7 +10,7 @@ class Home extends Component {
 	}
 
 	hanldeButton(){
-		console.log(this.props);
+		console.log(this.props.account);
 		this.props.dispatch({type: "TOGGLE"});
 	}
 

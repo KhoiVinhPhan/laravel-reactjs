@@ -6,16 +6,6 @@ import Button from './Button';
 class App extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            email: '',
-        };
-    }
-
-    componentDidMount(){
-        let email = localStorage.getItem('email');
-        this.setState({
-            email: email
-        });
     }
 
     render() { 
@@ -32,7 +22,7 @@ class App extends Component {
                         <li className="nav-item d-none d-sm-inline-block">
                             <Link className="nav-link js-scroll-trigger" to={'/users'}>Users</Link>
                         </li>
-                        <Button email={this.state.email} />
+                        <Button/>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item dropdown">

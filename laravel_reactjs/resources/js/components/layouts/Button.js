@@ -1,8 +1,11 @@
 import React, {Component, Fragment} from 'react';
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Button extends Component {
+
+
 	constructor(props) {
         super(props);
         this.handleLogoutWeb = this.handleLogoutWeb.bind(this);
@@ -18,20 +21,20 @@ class Button extends Component {
             if (response.status == 200) {
                 localStorage.removeItem('jwt');
                 localStorage.removeItem('email');
-                window.location.href = '/';
-                // console.log(this.state);
-                // this.props.history.push('/contact');
+                this.setState({ state: this.state });
             }
         })
     }
 
+
 	render() {
 		let login = localStorage.getItem('jwt');
         if (login) {
+            let email = localStorage.getItem('email');
             return (
                 <Fragment>
                     <li className="nav-item">     
-                        <span className="nav-link js-scroll-trigger">Hello: {this.props.email}</span>
+                        <span className="nav-link js-scroll-trigger">Hello: {email}</span>
                     </li>
                     <li className="nav-item">
                         <form onSubmit={this.handleLogoutWeb}>
@@ -55,4 +58,4 @@ class Button extends Component {
 	}
 }
 
-export default Button
+export default Button;
