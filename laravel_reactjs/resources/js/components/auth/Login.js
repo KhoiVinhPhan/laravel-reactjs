@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
 import App from '../layouts/App';
+import {connect} from 'react-redux';
 
 class Login extends Component {
     constructor(props) {
@@ -31,6 +32,9 @@ class Login extends Component {
                 console.log(response.data.token);
                 localStorage.setItem('jwt', response.data.token);
                 localStorage.setItem('email', response.data.email);
+
+                this.props.dispatch({type: "EMAIL", email: response.data.email});
+
                 this.props.history.push('/');
             }
         })
@@ -57,4 +61,6 @@ class Login extends Component {
         )
     }
 }
-export default Login
+export default connect(function(state){
+    return {email: state.email}
+})(Login);

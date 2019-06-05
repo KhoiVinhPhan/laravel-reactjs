@@ -8,5 +8,6 @@
 8. install jwt: $composer require tymon/jwt-auth:dev-develop --prefer-source
 9. setup key in jwt: php artisan jwt:secret
 10. Set react-redux: $npm install react-redux --save
-11. php artisan migrate
-12. php artisan db:seed
+11. Set react-persist: $npm install --save redux-persist
+12. php artisan migrate
+13. php artisan db:seed

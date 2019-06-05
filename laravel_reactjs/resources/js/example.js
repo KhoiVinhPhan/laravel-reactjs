@@ -38,10 +38,30 @@ var isAddingReducer = (state = false, action) => {
 	}
 }
 
+var jwt_token = ( state = "", action ) => {
+	switch (action.type) {
+		case "TOKEN":
+			return state = action.token
+		default:
+		return state;
+	}
+}
+
+var email = ( state = "", action ) => {
+	switch (action.type) {
+		case "EMAIL":
+			return state = action.email
+		default:
+		return state;
+	}
+}
+
 
 var reducer = redux.combineReducers({
 	mang: mangReducer,
-	isAdding: isAddingReducer
+	isAdding: isAddingReducer,
+	jwt_token: jwt_token,
+	email: email
 });
 
 
@@ -53,19 +73,20 @@ store.subscribe( () => console.log( "Change: ", store.getState() ) );
 
 
 //toogle: isAdding
-store.dispatch({type: "TOGGLE"});
+// store.dispatch({type: "TOGGLE"});
 
 //add item
-store.dispatch({
-	type: "ADD_ITEM",
-	item: "D"
-});
+// store.dispatch({
+// 	type: "ADD_ITEM",
+// 	item: "D"
+// });
 
 //remove item
-store.dispatch({
-	type: "REMOVE_ITEM",
-	index: 1
-});
+// store.dispatch({
+// 	type: "REMOVE_ITEM",
+// 	index: 1
+// });
+
 
 
 module.exports = store;

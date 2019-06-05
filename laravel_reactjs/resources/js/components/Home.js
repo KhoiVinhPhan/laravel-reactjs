@@ -10,8 +10,8 @@ class Home extends Component {
 	}
 
 	hanldeButton(){
-		console.log(this.props.account);
-		this.props.dispatch({type: "TOGGLE"});
+		this.props.dispatch({type: "ADD_ITEM", item: "D"});
+		console.log(this.props);
 	}
 
 	render() {        
@@ -19,6 +19,7 @@ class Home extends Component {
 			<App>
 				<div>
 					<h2>Home</h2>
+					<p></p>
 					<button onClick={this.hanldeButton}>Button</button>
 				</div>
 			</App>

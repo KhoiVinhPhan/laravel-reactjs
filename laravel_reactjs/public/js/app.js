@@ -68215,15 +68215,16 @@ function (_Component) {
   _createClass(Home, [{
     key: "hanldeButton",
     value: function hanldeButton() {
-      console.log(this.props.account);
       this.props.dispatch({
-        type: "TOGGLE"
+        type: "ADD_ITEM",
+        item: "D"
       });
+      console.log(this.props);
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_layouts_App__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_layouts_App__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.hanldeButton
       }, "Button")));
     }
@@ -68255,6 +68256,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _layouts_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../layouts/App */ "./resources/js/components/layouts/App.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68272,6 +68274,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -68326,6 +68329,11 @@ function (_Component) {
           localStorage.setItem('jwt', response.data.token);
           localStorage.setItem('email', response.data.email);
 
+          _this2.props.dispatch({
+            type: "EMAIL",
+            email: response.data.email
+          });
+
           _this2.props.history.push('/');
         }
       });
@@ -68361,7 +68369,11 @@ function (_Component) {
   return Login;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Login);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(function (state) {
+  return {
+    email: state.email
+  };
+})(Login));
 
 /***/ }),
 
@@ -68885,7 +68897,8 @@ function (_Component) {
       var login = localStorage.getItem('jwt');
 
       if (login) {
-        var email = localStorage.getItem('email');
+        // let email = localStorage.getItem('email');
+        var email = this.props.email;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "nav-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -68916,7 +68929,11 @@ function (_Component) {
   return Button;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Button);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(function (state) {
+  return {
+    email: state.email
+  };
+})(Button));
 
 /***/ }),
 
@@ -69353,9 +69370,37 @@ var isAddingReducer = function isAddingReducer() {
   }
 };
 
+var jwt_token = function jwt_token() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case "TOKEN":
+      return state = action.token;
+
+    default:
+      return state;
+  }
+};
+
+var email = function email() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case "EMAIL":
+      return state = action.email;
+
+    default:
+      return state;
+  }
+};
+
 var reducer = redux.combineReducers({
   mang: mangReducer,
-  isAdding: isAddingReducer
+  isAdding: isAddingReducer,
+  jwt_token: jwt_token,
+  email: email
 });
 var store = redux.createStore(reducer);
 console.log(store.getState()); //when change store
@@ -69363,20 +69408,18 @@ console.log(store.getState()); //when change store
 store.subscribe(function () {
   return console.log("Change: ", store.getState());
 }); //toogle: isAdding
+// store.dispatch({type: "TOGGLE"});
+//add item
+// store.dispatch({
+// 	type: "ADD_ITEM",
+// 	item: "D"
+// });
+//remove item
+// store.dispatch({
+// 	type: "REMOVE_ITEM",
+// 	index: 1
+// });
 
-store.dispatch({
-  type: "TOGGLE"
-}); //add item
-
-store.dispatch({
-  type: "ADD_ITEM",
-  item: "D"
-}); //remove item
-
-store.dispatch({
-  type: "REMOVE_ITEM",
-  index: 1
-});
 module.exports = store;
 
 /***/ }),
