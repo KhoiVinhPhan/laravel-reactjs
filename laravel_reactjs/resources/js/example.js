@@ -1,4 +1,16 @@
 var redux = require('redux');
+var persistStore = require('redux-persist');
+var persistReducer = require('redux-persist');
+var storage = require('redux-persist/lib/storage');
+var autoMergeLevel2 = require('redux-persist/lib/stateReconciler/autoMergeLevel2');
+
+
+const persistConfig = {
+ 	key: 'root',
+	storage: storage,
+	stateReconciler: autoMergeLevel2 // Xem thêm tại mục "Quá trình merge".
+};
+
 
 // var defaultState = {
 // 	mang: ["A", "B", "C"],
@@ -65,8 +77,12 @@ var reducer = redux.combineReducers({
 });
 
 
-var store = redux.createStore(reducer);
+const pReducer = persistReducer.persistReducer(persistConfig, reducer);
+
+var store = redux.createStore(pReducer);
 console.log(store.getState());
+
+// var persistor = persistStore.persistStore(store);
 
 //when change store
 store.subscribe( () => console.log( "Change: ", store.getState() ) );
