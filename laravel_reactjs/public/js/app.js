@@ -70387,8 +70387,8 @@ var reducer = redux.combineReducers({
 });
 var pReducer = persistReducer.persistReducer(persistConfig, reducer);
 var store = redux.createStore(pReducer);
-console.log(store.getState()); // var persistor = persistStore.persistStore(store);
-//when change store
+console.log(store.getState());
+var persistor = persistStore.persistStore(store); //when change store
 
 store.subscribe(function () {
   return console.log("Change: ", store.getState());
