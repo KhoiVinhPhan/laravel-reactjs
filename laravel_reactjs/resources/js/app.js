@@ -30,6 +30,7 @@ import Users from './components/users/Index.js'
 import CreateUser from './components/users/Create.js'
 import Login from './components/auth/Login.js'
 import Register from './components/auth/Register.js'
+import { PersistGate } from 'redux-persist/integration/react'
 
 
 const history = createBrowserHistory()

@@ -66054,6 +66054,100 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/redux-persist/es/integration/react.js":
+/*!************************************************************!*\
+  !*** ./node_modules/redux-persist/es/integration/react.js ***!
+  \************************************************************/
+/*! exports provided: PersistGate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersistGate", function() { return PersistGate; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+ // eslint-disable-line import/no-unresolved
+// eslint-disable-line import/no-unresolved
+
+
+var PersistGate = function (_PureComponent) {
+  _inherits(PersistGate, _PureComponent);
+
+  function PersistGate() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, PersistGate);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PersistGate.__proto__ || Object.getPrototypeOf(PersistGate)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      bootstrapped: false
+    }, _this.handlePersistorState = function () {
+      var persistor = _this.props.persistor;
+
+      var _persistor$getState = persistor.getState(),
+          bootstrapped = _persistor$getState.bootstrapped;
+
+      if (bootstrapped) {
+        if (_this.props.onBeforeLift) {
+          Promise.resolve(_this.props.onBeforeLift()).then(function () {
+            return _this.setState({ bootstrapped: true });
+          }).catch(function () {
+            return _this.setState({ bootstrapped: true });
+          });
+        } else {
+          _this.setState({ bootstrapped: true });
+        }
+        _this._unsubscribe && _this._unsubscribe();
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(PersistGate, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this._unsubscribe = this.props.persistor.subscribe(this.handlePersistorState);
+      this.handlePersistorState();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this._unsubscribe && this._unsubscribe();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      if (true) {
+        if (typeof this.props.children === 'function' && this.props.loading) console.error('redux-persist: PersistGate expects either a function child or loading prop, but not both. The loading prop will be ignored.');
+      }
+      if (typeof this.props.children === 'function') {
+        return this.props.children(this.state.bootstrapped);
+      }
+
+      return this.state.bootstrapped ? this.props.children : this.props.loading;
+    }
+  }]);
+
+  return PersistGate;
+}(react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]);
+PersistGate.defaultProps = {
+  loading: null
+};
+
+/***/ }),
+
 /***/ "./node_modules/redux-persist/es/persistCombineReducers.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/redux-persist/es/persistCombineReducers.js ***!
@@ -68870,6 +68964,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_users_Create_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/users/Create.js */ "./resources/js/components/users/Create.js");
 /* harmony import */ var _components_auth_Login_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/auth/Login.js */ "./resources/js/components/auth/Login.js");
 /* harmony import */ var _components_auth_Register_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/auth/Register.js */ "./resources/js/components/auth/Register.js");
+/* harmony import */ var redux_persist_integration_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux-persist/integration/react */ "./node_modules/redux-persist/es/integration/react.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -68886,6 +68981,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
 var store = __webpack_require__(/*! ./example.js */ "./resources/js/example.js"); // resources\assets\js\app.js
+
 
 
 
@@ -70306,20 +70402,20 @@ var persistConfig = {
   stateReconciler: autoMergeLevel2 // Xem thêm tại mục "Quá trình merge".
 
 }; // var defaultState = {
-// 	mang: ["A", "B", "C"],
-// 	isAdding: false
+//  mang: ["A", "B", "C"],
+//  isAdding: false
 // }
 // var reducer = (state = defaultState, action) => {
-// 	switch (action.type) {
-// 		case "TOGGLE":
-// 			return {...state, isAdding: !state.isAdding}
-// 		case "ADD_ITEM":
-// 			return {...state, mang: [...state.mang, action.item]}
-// 		case "REMOVE_ITEM":
-// 			return {...state, mang: state.mang.filter( (e,i)=> i != action.index )}
-// 		default:
-// 		return state;
-// 	}
+//  switch (action.type) {
+//      case "TOGGLE":
+//          return {...state, isAdding: !state.isAdding}
+//      case "ADD_ITEM":
+//          return {...state, mang: [...state.mang, action.item]}
+//      case "REMOVE_ITEM":
+//          return {...state, mang: state.mang.filter( (e,i)=> i != action.index )}
+//      default:
+//      return state;
+//  }
 // }
 
 var mangReducer = function mangReducer() {
@@ -70387,8 +70483,8 @@ var reducer = redux.combineReducers({
 });
 var pReducer = persistReducer.persistReducer(persistConfig, reducer);
 var store = redux.createStore(pReducer);
-console.log(store.getState());
-var persistor = persistStore.persistStore(store); //when change store
+console.log(store.getState()); // var persistor = persistStore.persistStore(store);
+//when change store
 
 store.subscribe(function () {
   return console.log("Change: ", store.getState());
@@ -70396,13 +70492,13 @@ store.subscribe(function () {
 // store.dispatch({type: "TOGGLE"});
 //add item
 // store.dispatch({
-// 	type: "ADD_ITEM",
-// 	item: "D"
+//  type: "ADD_ITEM",
+//  item: "D"
 // });
 //remove item
 // store.dispatch({
-// 	type: "REMOVE_ITEM",
-// 	index: 1
+//  type: "REMOVE_ITEM",
+//  index: 1
 // });
 
 module.exports = store;
