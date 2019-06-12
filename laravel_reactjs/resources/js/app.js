@@ -30,7 +30,7 @@ import Users from './components/users/Index.js'
 import CreateUser from './components/users/Create.js'
 import Login from './components/auth/Login.js'
 import Register from './components/auth/Register.js'
-import { PersistGate } from 'redux-persist/integration/react'
+import Articles from './components/articles/Index.js'
 
 
 const history = createBrowserHistory()
@@ -44,6 +44,7 @@ render (
                 <Route path='/users' component={Users} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
+                <Route path='/articles' component={Articles} />
             </Switch>
         </Router>
     </Provider>,

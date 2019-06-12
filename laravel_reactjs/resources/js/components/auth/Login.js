@@ -33,7 +33,7 @@ class Login extends Component {
                 localStorage.setItem('jwt', response.data.token);
                 localStorage.setItem('email', response.data.email);
 
-                this.props.dispatch({type: "EMAIL", email: response.data.email});
+                // this.props.dispatch({type: "EMAIL", email: response.data.email});
 
                 this.props.history.push('/');
             }

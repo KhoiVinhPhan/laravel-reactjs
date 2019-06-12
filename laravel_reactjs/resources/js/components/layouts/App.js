@@ -127,6 +127,9 @@ class App extends Component {
                                         <li className="nav-item">
                                             <Link className="nav-link js-scroll-trigger nav-link active" to={'/'}><i className="fa fa-circle-o nav-icon"></i>Home</Link>
                                         </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link js-scroll-trigger nav-link active" to={'/articles'}><i className="fa fa-circle-o nav-icon"></i>Articles</Link>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

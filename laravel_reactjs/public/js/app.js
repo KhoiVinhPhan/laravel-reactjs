@@ -66054,100 +66054,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/redux-persist/es/integration/react.js":
-/*!************************************************************!*\
-  !*** ./node_modules/redux-persist/es/integration/react.js ***!
-  \************************************************************/
-/*! exports provided: PersistGate */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersistGate", function() { return PersistGate; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
- // eslint-disable-line import/no-unresolved
-// eslint-disable-line import/no-unresolved
-
-
-var PersistGate = function (_PureComponent) {
-  _inherits(PersistGate, _PureComponent);
-
-  function PersistGate() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, PersistGate);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PersistGate.__proto__ || Object.getPrototypeOf(PersistGate)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      bootstrapped: false
-    }, _this.handlePersistorState = function () {
-      var persistor = _this.props.persistor;
-
-      var _persistor$getState = persistor.getState(),
-          bootstrapped = _persistor$getState.bootstrapped;
-
-      if (bootstrapped) {
-        if (_this.props.onBeforeLift) {
-          Promise.resolve(_this.props.onBeforeLift()).then(function () {
-            return _this.setState({ bootstrapped: true });
-          }).catch(function () {
-            return _this.setState({ bootstrapped: true });
-          });
-        } else {
-          _this.setState({ bootstrapped: true });
-        }
-        _this._unsubscribe && _this._unsubscribe();
-      }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(PersistGate, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this._unsubscribe = this.props.persistor.subscribe(this.handlePersistorState);
-      this.handlePersistorState();
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this._unsubscribe && this._unsubscribe();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      if (true) {
-        if (typeof this.props.children === 'function' && this.props.loading) console.error('redux-persist: PersistGate expects either a function child or loading prop, but not both. The loading prop will be ignored.');
-      }
-      if (typeof this.props.children === 'function') {
-        return this.props.children(this.state.bootstrapped);
-      }
-
-      return this.state.bootstrapped ? this.props.children : this.props.loading;
-    }
-  }]);
-
-  return PersistGate;
-}(react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]);
-PersistGate.defaultProps = {
-  loading: null
-};
-
-/***/ }),
-
 /***/ "./node_modules/redux-persist/es/persistCombineReducers.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/redux-persist/es/persistCombineReducers.js ***!
@@ -68964,7 +68870,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_users_Create_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/users/Create.js */ "./resources/js/components/users/Create.js");
 /* harmony import */ var _components_auth_Login_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/auth/Login.js */ "./resources/js/components/auth/Login.js");
 /* harmony import */ var _components_auth_Register_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/auth/Register.js */ "./resources/js/components/auth/Register.js");
-/* harmony import */ var redux_persist_integration_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux-persist/integration/react */ "./node_modules/redux-persist/es/integration/react.js");
+/* harmony import */ var _components_articles_Index_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/articles/Index.js */ "./resources/js/components/articles/Index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -69019,6 +68925,9 @@ Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED
 }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
   path: "/register",
   component: _components_auth_Register_js__WEBPACK_IMPORTED_MODULE_10__["default"]
+}), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+  path: "/articles",
+  component: _components_articles_Index_js__WEBPACK_IMPORTED_MODULE_11__["default"]
 })))), document.getElementById('app'));
 
 /***/ }),
@@ -69306,6 +69215,104 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/articles/Index.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/articles/Index.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _layouts_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layouts/App */ "./resources/js/components/layouts/App.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-js-pagination */ "./node_modules/react-js-pagination/dist/Pagination.js");
+/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_js_pagination__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var Index =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Index, _Component);
+
+  function Index(props) {
+    var _this;
+
+    _classCallCheck(this, Index);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Index).call(this, props));
+    _this.state = {
+      data: []
+    };
+    return _this;
+  }
+
+  _createClass(Index, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      var login = localStorage.getItem('jwt');
+
+      if (!login) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Redirect"], {
+          to: "login"
+        }));
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_layouts_App__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row mb-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-6"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "m-0 text-dark"
+      }, "Articles")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-6"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+        className: "btn btn-success pull-right",
+        to: '/users/create'
+      }, "Create")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+        className: "table table-hover"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "#"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Images"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Status"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Actions"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null)));
+    }
+  }]);
+
+  return Index;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Index);
+
+/***/ }),
+
 /***/ "./resources/js/components/auth/Login.js":
 /*!***********************************************!*\
   !*** ./resources/js/components/auth/Login.js ***!
@@ -69392,12 +69399,7 @@ function (_Component) {
         if (response.data.token) {
           console.log(response.data.token);
           localStorage.setItem('jwt', response.data.token);
-          localStorage.setItem('email', response.data.email);
-
-          _this2.props.dispatch({
-            type: "EMAIL",
-            email: response.data.email
-          });
+          localStorage.setItem('email', response.data.email); // this.props.dispatch({type: "EMAIL", email: response.data.email});
 
           _this2.props.history.push('/');
         }
@@ -69837,7 +69839,14 @@ function (_Component) {
         to: '/'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-circle-o nav-icon"
-      }), "Home")))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        className: "nav-link js-scroll-trigger nav-link active",
+        to: '/articles'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-circle-o nav-icon"
+      }), "Articles")))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content-header"
@@ -69962,8 +69971,8 @@ function (_Component) {
       var login = localStorage.getItem('jwt');
 
       if (login) {
-        // let email = localStorage.getItem('email');
-        var email = this.props.email;
+        var email = localStorage.getItem('email'); // let email = this.props.email;
+
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "nav-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {

@@ -30,8 +30,8 @@ class Button extends Component {
 	render() {
 		let login = localStorage.getItem('jwt');
         if (login) {
-            // let email = localStorage.getItem('email');
-            let email = this.props.email;
+            let email = localStorage.getItem('email');
+            // let email = this.props.email;
             return (
                 <Fragment>
                     <li className="nav-item">     
