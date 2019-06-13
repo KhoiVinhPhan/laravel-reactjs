@@ -31,6 +31,7 @@ import CreateUser from './components/users/Create.js'
 import Login from './components/auth/Login.js'
 import Register from './components/auth/Register.js'
 import Articles from './components/articles/Index.js'
+import CreateArticle from './components/articles/Create.js'
 
 
 const history = createBrowserHistory()
@@ -42,9 +43,11 @@ render (
                 <Route path='/contact' component={Contact} />
                 <Route path='/users/create' component={CreateUser} />
                 <Route path='/users' component={Users} />
+                <Route path='/articles/create' component={CreateArticle} />
+                <Route path='/articles' component={Articles} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
-                <Route path='/articles' component={Articles} />
+                
             </Switch>
         </Router>
     </Provider>,

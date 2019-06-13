@@ -11,6 +11,13 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Articles::class, 50)->create();
+        DB::table('articles')->insert([
+        	[
+        		'title' => 'demo', 
+        		'images' => '',
+        		'status' => 0, 
+        		'created_at' => now()
+        	]
+        ]);
     }
 }

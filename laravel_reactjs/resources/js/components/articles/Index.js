@@ -12,8 +12,42 @@ class Index extends Component {
 		}
 	}
 
-	componentDidMount(){
-		
+	componentDidMount() {
+		this.getData();
+	}
+
+	getData() {
+		let url = window.Laravel.baseUrl + '/api/articles';
+		console.log(url);
+		let token = {
+            'token' : localStorage.getItem('jwt')
+        }
+		axios.post(url, token)
+			.then(response => {
+				console.log(response.data);
+				this.setState({
+					data: response.data
+				});
+			})
+			.catch(function(error){
+				console.log(error);
+			})
+	}
+
+	fetchRows(){
+		if (this.state.data instanceof Array) {
+			return this.state.data.map((object, i)=>{
+				return (
+					<tr key={i}>
+                        <td>{i}</td>
+                        <td>{object.images}</td>
+                        <td>{object.title}</td>
+                        <td>{object.status}</td>
+                        <td></td>
+                    </tr>
+				);
+			})
+		}
 	}
 
 	render(){
@@ -33,7 +67,7 @@ class Index extends Component {
                             <h1 className="m-0 text-dark">Articles</h1>
                         </div>
                         <div className="col-sm-6">
-                            <Link className="btn btn-success pull-right" to={'/users/create'}>Create</Link>
+                            <Link className="btn btn-success pull-right" to={'/articles/create'}>Create</Link>
                         </div>
                     </div>
                 </div>
@@ -50,7 +84,7 @@ class Index extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        { this.fetchRows() }
                     </tbody>
                 </table>
                 
