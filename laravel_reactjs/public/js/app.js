@@ -69295,6 +69295,7 @@ function (_Component) {
     };
     _this.handleChangeTitle = _this.handleChangeTitle.bind(_assertThisInitialized(_this));
     _this.handleChangeContent = _this.handleChangeContent.bind(_assertThisInitialized(_this));
+    _this.handleChangeStatus = _this.handleChangeStatus.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -69314,11 +69315,19 @@ function (_Component) {
       });
     }
   }, {
+    key: "handleChangeStatus",
+    value: function handleChangeStatus(e) {
+      this.setState({
+        status: e.target.value
+      });
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
       console.log(this.state.title);
-      console.log(this.state.content); // let url = '/api/users/create';
+      console.log(this.state.content);
+      console.log(this.state.status); // let url = '/api/users/create';
       // axios.post(url, this.state).then( (response) => {
       // 	if (response.status == 200) {
       //               this.props.history.push('/users');
@@ -69351,7 +69360,7 @@ function (_Component) {
         className: "form-control",
         onChange: this.handleChangeTitle
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Content"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ckeditor4_react__WEBPACK_IMPORTED_MODULE_4___default.a, {
-        data: "<p>Hello from CKEditor 4!</p>",
+        data: "",
         onChange: this.handleChangeContent
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -69366,8 +69375,13 @@ function (_Component) {
         htmlFor: "sel1"
       }, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         className: "form-control",
-        id: "sel1"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Public"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Privice")))))))));
+        id: "sel1",
+        onChange: this.handleChangeStatus
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "0"
+      }, "Public"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "1"
+      }, "Private")))))))));
     }
   }]);
 

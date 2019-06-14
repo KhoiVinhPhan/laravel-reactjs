@@ -15,6 +15,7 @@ class Create extends Component {
 		};
 		this.handleChangeTitle = this.handleChangeTitle.bind(this);
 		this.handleChangeContent = this.handleChangeContent.bind(this);
+		this.handleChangeStatus = this.handleChangeStatus.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -30,12 +31,19 @@ class Create extends Component {
 		});
 	}
 
+	handleChangeStatus(e){
+		this.setState({
+			status: e.target.value
+		});
+	}
+
 
 
 	handleSubmit(e) {
 		e.preventDefault();
 		console.log(this.state.title);
 		console.log(this.state.content);
+		console.log(this.state.status);
 		// let url = '/api/users/create';
 		// axios.post(url, this.state).then( (response) => {
 		// 	if (response.status == 200) {
@@ -64,7 +72,7 @@ class Create extends Component {
 		                            <input type={'text'} className="form-control" onChange={this.handleChangeTitle}/>
 		                            <label>Content</label>
 		                           	<CKEditor
-					                    data="<p>Hello from CKEditor 4!</p>"
+					                    data=""
 					                    onChange={this.handleChangeContent}
 					                />
 		                            <div className="form-group">
@@ -74,9 +82,9 @@ class Create extends Component {
 		                        <div className="col-sm-3">
 		                        	<div className="form-group">
 									  	<label htmlFor="sel1">Status:</label>
-									  	<select className="form-control" id="sel1">
-										    <option>Public</option>
-										    <option>Privice</option>
+									  	<select className="form-control" id="sel1" onChange={this.handleChangeStatus}>
+										    <option value="0">Public</option>
+										    <option value="1">Private</option>
 									  	</select>
 									</div>
 		                        </div>
